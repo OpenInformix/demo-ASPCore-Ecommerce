@@ -1,0 +1,66 @@
+﻿@model EcomApplication.Models.Mobiles
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<h1>Create</h1>
+
+<h4>Mobiles</h4>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.SLNo)
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileName" class="control-label"></label>
+                <input asp-for="MobileName" class="form-control" />
+                <span asp-validation-for="MobileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!--
+                <label asp-for="PicURL" class="control-label"></label>
+                <input asp-for="PicURL" class="form-control" />
+                <span asp-validation-for="PicURL" class="text-danger"></span>
+                -->
+                <label asp-for="PicURL" class="control-label">Upload Mobile Image</label>
+                <input type="file" name="ImageFile" required />
+            </div>
+            <div class="form-group">
+                <span>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    &nbsp;&nbsp;
+                    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                </span>
+                
+            </div>
+        </form>
+    </div>
+</div>
+

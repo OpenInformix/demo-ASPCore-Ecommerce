@@ -1,0 +1,47 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<a class="btn btn-primary" href="@Url.Action("Create", "Inventory")">Add New Mobile</a>
+<br><br>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Mobile Name</th>
+        <th>Price Per Unit</th>
+        <th>Available Quantity</th>
+        <th>Description</th>
+        <th>Upload Picture</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][4]</td>
+            <td>@Model.Rows[i][5]</td>
+            <td>
+                <span>
+                    <a class="btn btn-default" href="@Url.Action("Edit", "Inventory", new {@SLNo=@Model.Rows[i][0] })">Edit</a>
+                    &nbsp; &nbsp;
+                    <a class="btn btn-default" href="@Url.Action("Delete", "Inventory", new {@SLNo=@Model.Rows[i][0] })">Delete</a>
+                </span>
+            </td>
+        </tr>
+    }
+</table>
+
+
+

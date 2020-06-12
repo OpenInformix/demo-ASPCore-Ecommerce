@@ -1,0 +1,9 @@
+D:\Demo-Apps\eCom Application\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.deps.json
+D:\Demo-Apps\eCom Application\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.dll
+D:\Demo-Apps\eCom Application\EcomDAL\bin\Debug\netcoreapp3.1\Informix.Net.Core.dll
+D:\Demo-Apps\eCom Application\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.AssemblyInfoInputs.cache
+D:\Demo-Apps\eCom Application\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.AssemblyInfo.cs
+D:\Demo-Apps\eCom Application\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.csproj.CopyComplete
+D:\Demo-Apps\eCom Application\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.pdb
+D:\Demo-Apps\eCom Application\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.dll
+D:\Demo-Apps\eCom Application\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.pdb

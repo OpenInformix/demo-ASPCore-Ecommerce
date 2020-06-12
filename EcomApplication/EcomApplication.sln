@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomApplication", "EcomApplication.csproj", "{11BAEF1A-E53D-4AD9-8980-21A51DFC431D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomDAL", "..\EcomDAL\EcomDAL.csproj", "{7574310E-8DD6-4593-BF08-8BA94BAA1A3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11BAEF1A-E53D-4AD9-8980-21A51DFC431D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BAEF1A-E53D-4AD9-8980-21A51DFC431D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BAEF1A-E53D-4AD9-8980-21A51DFC431D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BAEF1A-E53D-4AD9-8980-21A51DFC431D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7574310E-8DD6-4593-BF08-8BA94BAA1A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7574310E-8DD6-4593-BF08-8BA94BAA1A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7574310E-8DD6-4593-BF08-8BA94BAA1A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7574310E-8DD6-4593-BF08-8BA94BAA1A3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA473368-E86B-4025-9FDA-5FDABF61F5B5}
+	EndGlobalSection
+EndGlobal

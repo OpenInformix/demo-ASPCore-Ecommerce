@@ -12,15 +12,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <div class = "row" >
-    @foreach (var m in Model)
+    @foreach (var mobile in Model)
     {
         <div class="col-md-4">
             <div class = "row">
-                <h4> <span id = "mobilename"  style = "color:darkred" > @m.MobileName </span></h4>
+                <h4> <span id = "mobilename"  style = "color:darkred" > @mobile.MobileName </span></h4>
                 <p> <span class = "glyphicon glyphicon-heart" style = "color:red; pointer-events:fill" contextmenu = "Added To WishList"> </span></p>
             </div>
-            <p> <img src = "~/Images/@m.PicURL" style = "overflow: hidden; position: relative; width:200px; height:200px;"/> </p>
-            <p> <a class="btn btn-default" href=""> View More» </a></p>
+            <p> <a href="@Url.Action("EachProductDetails", "ProductDetails", mobile)"> <img src = "~/Images/@mobile.PicURL"  style = "overflow: hidden; position: relative; width:200px; height:200px;"/> </a> </p>
+            <p> <a class="btn btn-default" href="@Url.Action("EachProductDetails", "ProductDetails", mobile)"> View More» </a></p>
             <p><span class="glyphicon glyphicon-shopping-cart" style="color:green"></span></p>
         </div>
     }

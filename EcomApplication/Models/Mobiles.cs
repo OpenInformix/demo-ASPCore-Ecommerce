@@ -14,6 +14,7 @@ namespace EcomApplication.Models
             get;
             set;
         }
+        [DisplayName("Mobile Name")]
         public string MobileName
         {
             get;
@@ -36,6 +37,28 @@ namespace EcomApplication.Models
         }
         [DisplayName("Upload File")]
         public string PicURL
+        {
+            get;
+            set;
+        }
+        [DisplayName("Mobile Model")]
+        public string Model
+        {
+            get;
+            set;
+        }
+        public string Features
+        {
+            get;
+            set;
+        }
+        public string Color
+        {
+            get;
+            set;
+        }
+        [DisplayName("Sim Type")]
+        public string SimType
         {
             get;
             set;

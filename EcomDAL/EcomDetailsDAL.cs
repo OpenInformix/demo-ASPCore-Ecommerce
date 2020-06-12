@@ -35,7 +35,20 @@ namespace EcomDAL
             {
                 return false;
             }
-    }
+        }
+        public bool DDLOpperation(string query)
+        {
+            cmd = new IfxCommand(query, EcomDetailsDAL.connect());
+            int x = cmd.ExecuteNonQuery();
+            if (x == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public DataTable SelactAll(string query)
         {
             da = new IfxDataAdapter(query, EcomDetailsDAL.connect());

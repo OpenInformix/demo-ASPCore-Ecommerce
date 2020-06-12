@@ -18,43 +18,75 @@
 <hr/>
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 @Html.HiddenFor(model => model.SLNo)
             </div>
-            <div class="form-group">
-                <label asp-for="MobileName" class="control-label"></label>
-                <input asp-for="MobileName" class="form-control" />
-                <span asp-validation-for="MobileName" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label asp-for="MobileName" class="control-label"></label>
+                    <input asp-for="MobileName" class="form-control" />
+                    <span asp-validation-for="MobileName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="Model" class="control-label"></label>
+                    <input asp-for="Model" class="form-control" />
+                    <span asp-validation-for="Model" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label asp-for="Color" class="control-label"></label>
+                    <input asp-for="Color" class="form-control" />
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="SimType" class="control-label"></label>
+                    <input asp-for="SimType" class="form-control" />
+                    <span asp-validation-for="SimType" class="text-danger"></span>
+                </div>
             </div>
+
+            <div class="form-group">
+                <label asp-for="Features" class="control-label"></label>
+                <input asp-for="Features" class="form-control" />
+                <span asp-validation-for="Features" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="PicURL" class="control-label"></label>
-                <input asp-for="PicURL" class="form-control" />
-                <span asp-validation-for="PicURL" class="text-danger"></span>
+                <label asp-for="PicURL" class="control-label">Upload Mobile Image</label>
+                <input type="file" name="ImageFile" required />
             </div>
+
             <div class="form-group">
                 <span>
                     <input type="submit" value="Save" class="btn btn-primary" />
                     &nbsp; &nbsp;
                     <a class="btn btn-primary" asp-action="Index">Back to List</a>
                 </span>
-                
+
             </div>
         </form>
     </div>

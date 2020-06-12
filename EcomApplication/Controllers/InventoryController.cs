@@ -32,7 +32,9 @@ namespace EcomApplication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    string createTable = "Create table Mobiles (SLNo serial PRIMARY KEY, MobileName nvarchar(100) NULL, Price decimal(18, 2), Quantity int NULL,  Description nvarchar(250) NULL, PicURL nvarchar(250) NULL)";
+                    string createTable = "Create table Mobiles (SLNo serial PRIMARY KEY, MobileName nvarchar(100) NULL, Price decimal(18, 2)," +
+                        " Quantity int NULL,  Description nvarchar(250) NULL, PicURL nvarchar(250) NULL," +
+                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL)";
                     IfxCommand cmd = new IfxCommand(createTable, Con);
                     cmd.ExecuteNonQuery();
                     IfxDataAdapter ifx = new IfxDataAdapter("SELECT * FROM Mobiles", Con);
@@ -67,13 +69,17 @@ namespace EcomApplication.Controllers
             using (IfxConnection Con = new IfxConnection(connString))
             {
                 Con.Open();
-                string query = "INSERT INTO Mobiles (MobileName, Price, Quantity, Description, PicURL) VALUES(?, ?, ?, ?, ?)";
+                string query = "INSERT INTO Mobiles (MobileName, Price, Quantity, Description, PicURL, Model, Features, Color, SimType) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 IfxCommand cmd = new IfxCommand(query, Con);
                 cmd.Parameters.Add("mobilename", IfxType.VarChar).Value = mobilesModel.MobileName;
                 cmd.Parameters.Add("price", IfxType.Decimal).Value = mobilesModel.Price;
                 cmd.Parameters.Add("quantity", IfxType.Int).Value = mobilesModel.Quantity;
                 cmd.Parameters.Add("description", IfxType.VarChar).Value = mobilesModel.Description;
                 cmd.Parameters.Add("picurl", IfxType.VarChar).Value = mobilesModel.PicURL;
+                cmd.Parameters.Add("model", IfxType.VarChar).Value = mobilesModel.Model;
+                cmd.Parameters.Add("features", IfxType.VarChar).Value = mobilesModel.Features;
+                cmd.Parameters.Add("color", IfxType.VarChar).Value = mobilesModel.Color;
+                cmd.Parameters.Add("simtype", IfxType.VarChar).Value = mobilesModel.SimType;
 
                 cmd.ExecuteNonQuery();
             }
@@ -102,6 +108,10 @@ namespace EcomApplication.Controllers
                 mobile.Quantity = Convert.ToInt32(mobileTable.Rows[0][3].ToString());
                 mobile.Description = mobileTable.Rows[0][4].ToString();
                 mobile.PicURL = mobileTable.Rows[0][5].ToString();
+                mobile.Model = mobileTable.Rows[0][6].ToString();
+                mobile.Features = mobileTable.Rows[0][7].ToString();
+                mobile.Color = mobileTable.Rows[0][8].ToString();
+                mobile.SimType = mobileTable.Rows[0][9].ToString();
                 return View(mobile);
             }
             else
@@ -112,16 +122,32 @@ namespace EcomApplication.Controllers
         [HttpPost]
         public ActionResult Edit(Mobiles mobile)
         {
+            // To create a Unique file name and URL everytime when User upload a new picture
+            string ImageFileName = Path.GetFileNameWithoutExtension(mobile.ImageFile.FileName);
+            string ImageFileExtension = Path.GetExtension(mobile.ImageFile.FileName);
+            string FinalImageName = ImageFileName + DateTime.Now.ToString("yymmssfff") + ImageFileExtension;
+            mobile.PicURL = FinalImageName;
+
+            // To save that newly uploaded image to Disk location inside wwwroot/Images folder
+            var uploads = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+            var path = Path.Combine(uploads, FinalImageName);
+            mobile.ImageFile.CopyTo(new FileStream(path, FileMode.Create));
+
             using (IfxConnection Con = new IfxConnection(connString))
             {
                 Con.Open();
-                string query = "UPDATE Mobiles SET MobileName = ? , Price= ? , Quantity = ? , Description = ? , PicURL = ? Where SLNo = ?";
+                string query = "UPDATE Mobiles SET MobileName = ? , Price= ? , Quantity = ? , Description = ? , PicURL = ? , Model = ? , " +
+                    "Features = ? , Color = ? , SimType = ?  Where SLNo = ?";
                 IfxCommand cmd = new IfxCommand(query, Con);
                 cmd.Parameters.Add("mobilename", IfxType.VarChar).Value = mobile.MobileName;
                 cmd.Parameters.Add("price", IfxType.Decimal).Value = mobile.Price;
                 cmd.Parameters.Add("quantity", IfxType.Int).Value = mobile.Quantity;
                 cmd.Parameters.Add("description", IfxType.VarChar).Value = mobile.Description;
                 cmd.Parameters.Add("picurl", IfxType.VarChar).Value = mobile.PicURL;
+                cmd.Parameters.Add("model", IfxType.VarChar).Value = mobile.Model;
+                cmd.Parameters.Add("features", IfxType.VarChar).Value = mobile.Features;
+                cmd.Parameters.Add("color", IfxType.VarChar).Value = mobile.Color;
+                cmd.Parameters.Add("simtype", IfxType.VarChar).Value = mobile.SimType;
                 cmd.Parameters.Add("slno", IfxType.Serial).Value = mobile.SLNo;
                 cmd.ExecuteNonQuery();
             }

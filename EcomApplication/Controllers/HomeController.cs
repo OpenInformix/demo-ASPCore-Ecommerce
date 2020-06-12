@@ -26,7 +26,22 @@ namespace EcomApplication.Controllers
         {
             string mycmd = "select * from Mobiles";
             dt = new DataTable();
-            dt = ecomDAL.SelactAll(mycmd);
+            try
+            {
+                dt = ecomDAL.SelactAll(mycmd);
+            }
+            catch (Exception ex)
+            {
+                string createTable = "Create table Mobiles (SLNo serial PRIMARY KEY, MobileName nvarchar(100) NULL, Price decimal(18, 2)," +
+                        " Quantity int NULL,  Description nvarchar(250) NULL, PicURL nvarchar(250) NULL," +
+                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL)";
+                Boolean status = ecomDAL.DDLOpperation(createTable);
+                if (status)
+                {
+                    dt = ecomDAL.SelactAll(mycmd);
+                }
+            }
+
             List<Mobiles> list = new List<Mobiles>();
             
             for (int i = 0; i < dt.Rows.Count; i++)

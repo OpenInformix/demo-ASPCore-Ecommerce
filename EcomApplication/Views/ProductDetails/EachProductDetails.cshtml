@@ -1,52 +1,132 @@
-﻿@model IEnumerable<EcomApplication.Models.Mobiles>
+﻿@model EcomApplication.Models.Mobiles
 @{
     ViewData["Title"] = "EachProductDetails";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
     Layout = "~/Views/Shared/_HomepageLayout.cshtml";
 }
-
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 
 <h3> Product Specification </h3>
 
-<div ng-controller="MainCtrl">
-    @foreach (var mobile in Model)
-    {
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                @mobile.MobileName
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-3">
+                <label asp-for="MobileName"></label>
             </div>
-            <div class="panel-body">
-                <div class="col-sm-3 col-md-6" style="color:blue">
-                    <img src="~/Images/@mobile.PicURL" width="400" height="400" />
-                </div>
-
-                <div class="col-sm-9 col-md-6">
-                    <h3> <span id="mobilename" style="color:black"> <b> MobileName: </b> </span></h3>
-                    <h6> <span id="mobilename" style="color:black"> @mobile.MobileName </span> </h6>
-                    <h3> <span id="mobilename" style="color:black"> <b> Features: </b></span> </h3>
-                    <h6> <span id="mobilename" style="color:black"> @mobile.Features </span> </h6>
-                    <h3> <span id="mobilename" style="color:black"> <b> Color: </b></span> </h3>
-                    <h4> <span id="mobilename" style="color:black"> @mobile.Color </span></h4>
-                    <h3> <span id="mobilename" style="color:black"> <b> Sim Type </b></span> </h3>
-                    <h4> <span id="mobilename" style="color:black"> @mobile.SimType </span></h4>
-                    <h3> <span id="mobilename" style="color:black"> <b> Model: </b></span> </h3>
-                    <h6> <span id="mobilename" style="color:black"> @mobile.Model </span></h6>
-                    <h3> <span id="mobilename" style="color:black"> <b> Price: </b></span> </h3>
-                    <h6> <span id="mobilename" style="color:black"> @mobile.Price </span></h6>
-                </div>
-            </div>
-            <div>
-
-                <a id="btn_add" href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg" style="margin-left:60px">
-                    <span class="glyphicon glyphicon-eye-open"> </span> Continue shopping
-                </a>
-                <br />
+            <div class="col-md-3">
+                <input style="border:none; background-color:transparent" asp-for="MobileName" readonly />
             </div>
         </div>
-    }
-</div>
+    </div>
 
+    <div class="panel-body">
+        <div class="col-sm-3 col-md-6" style="color:blue">
+            <a href="~/ZoomImages/@Html.ValueFor(model => model.PicURL)" class="cloud-zoom" rel="adjustX: 10, adjustY:-4">
+                <img src="~/Images/@Html.ValueFor(model => model.PicURL)" width="400" height="400" />
+            </a>
+        </div>
+
+        <div class="col-sm-9 col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Mobile Name: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.MobileName) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Model: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.Model) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Price: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.Price) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Sim Type: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.SimType) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Color: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.Color) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Features: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.Features) </span> </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color: black; font-size: large; font-weight: bold"> Description: </span></p>
+                </div>
+                <div class="col-md-6">
+                    <p> <span id="mobilename" style="color:black; font-size:medium"> @Html.ValueFor(model => model.Description) </span> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <form asp-action="AddToCart">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.HiddenFor(model => model.SLNo)
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-2" style="padding-left:50px; padding-top:15px">
+                    <label asp-for="Quantity" class="control-label"></label>
+                </div>
+
+                <div class="form-group col-md-2" style="padding-top:10px">
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <a id="btn_add" class="btn btn-info btn-lg" style="margin-left:60px">
+                        <span class="glyphicon glyphicon-shopping-cart"> </span>
+                        <input type="submit" style="background-color: transparent; border: none;" value="Add To Cart" />
+                    </a>
+                </div>
+                <div class="form-group col-md-4">
+                    <a id="btn_add" href="@Url.Action("Index", "Home")" class="btn btn-info btn-lg" style="margin-left:60px">
+                        <span class="glyphicon glyphicon-eye-open"> </span> Continue shopping
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

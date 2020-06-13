@@ -226,6 +226,7 @@ D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razo
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Inventory\Create.cshtml.g.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Inventory\Edit.cshtml.g.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Inventory\Index.cshtml.g.cs
+D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\ProductDetails\EachProductDetails.cshtml.g.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_HomepageLayout.cshtml.g.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -241,4 +242,5 @@ D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\stat
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\EcomApplication.dll
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\EcomApplication.pdb
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\EcomApplication.genruntimeconfig.cache
-D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\ProductDetails\EachProductDetails.cshtml.g.cs
+D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomApplication\obj\Debug\netcoreapp3.1\Razor\Views\MyOrders\Index.cshtml.g.cs

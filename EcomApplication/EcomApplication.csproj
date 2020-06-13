@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="glyphicon" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 

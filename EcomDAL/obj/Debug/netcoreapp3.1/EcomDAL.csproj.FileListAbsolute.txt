@@ -11,7 +11,6 @@ D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.deps
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.dll
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\bin\Debug\netcoreapp3.1\EcomDAL.pdb
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\bin\Debug\netcoreapp3.1\Informix.Net.Core.dll
-D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.csprojAssemblyReference.cache
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.AssemblyInfoInputs.cache
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.AssemblyInfo.cs
 D:\Demo-Apps\demo-ASPCore-Ecommerce\EcomDAL\obj\Debug\netcoreapp3.1\EcomDAL.csproj.CopyComplete

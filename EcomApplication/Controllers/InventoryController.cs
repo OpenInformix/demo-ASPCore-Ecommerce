@@ -40,6 +40,10 @@ namespace EcomApplication.Controllers
                     IfxDataAdapter ifx = new IfxDataAdapter("SELECT * FROM Mobiles", Con);
                     ifx.Fill(table);
                 }
+                finally
+                {
+                    Con.Close();
+                }
             }
             return View(table);
         }
@@ -82,6 +86,7 @@ namespace EcomApplication.Controllers
                 cmd.Parameters.Add("simtype", IfxType.VarChar).Value = mobilesModel.SimType;
 
                 cmd.ExecuteNonQuery();
+                Con.Close();
             }
             return RedirectToAction("Index");
         }
@@ -99,6 +104,7 @@ namespace EcomApplication.Controllers
                 IfxDataAdapter ifx = new IfxDataAdapter(query, Con);
                 ifx.SelectCommand.Parameters.Add("SLNo", IfxType.Serial).Value = SLNo;
                 ifx.Fill(mobileTable);
+                Con.Close();
             }
             if (mobileTable.Rows.Count == 1)
             {
@@ -150,6 +156,7 @@ namespace EcomApplication.Controllers
                 cmd.Parameters.Add("simtype", IfxType.VarChar).Value = mobile.SimType;
                 cmd.Parameters.Add("slno", IfxType.Serial).Value = mobile.SLNo;
                 cmd.ExecuteNonQuery();
+                Con.Close();
             }
             return RedirectToAction("Index");
         }
@@ -161,10 +168,11 @@ namespace EcomApplication.Controllers
             using (IfxConnection Con = new IfxConnection(connString))
             {
                 Con.Open();
-                string query = "DELETE FROM Mobiles WHere SLNo = ?";
+                string query = "DELETE FROM Mobiles Where SLNo = ?";
                 IfxCommand cmd = new IfxCommand(query, Con);
                 cmd.Parameters.Add("slno", IfxType.Serial).Value = slno;
                 cmd.ExecuteNonQuery();
+                Con.Close();
             }
             return RedirectToAction("Index");
         }

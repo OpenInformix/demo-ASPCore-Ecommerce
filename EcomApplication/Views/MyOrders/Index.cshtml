@@ -1,0 +1,51 @@
+﻿@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<div class="row">
+    <div class="col-md-10"> <h3>My Orders</h3></div>
+</div>
+
+<br>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Picture</th>
+        <th>Order #</th>
+        <th>Mobile Name</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>SimType</th>
+        <th>Features</th>
+        <th>Description</th>
+        <th>Price Per Unit</th>
+        <th>Selected Quantity</th>
+        <th>Total Amount</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td> <img src="~/Images/@Model.Rows[i][4]" style="overflow: hidden; position: relative; width:100px; height:100px;" /></td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][5]</td>
+            <td>@Model.Rows[i][7]</td>
+            <td>@Model.Rows[i][8]</td>
+            <td>@Model.Rows[i][6]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][9]</td>
+            <td>@Model.Rows[i][10]</td>
+            <td>@Model.Rows[i][11]</td>
+        </tr>
+    }
+</table>

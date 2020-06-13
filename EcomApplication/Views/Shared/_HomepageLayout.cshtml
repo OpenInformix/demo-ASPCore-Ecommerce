@@ -19,7 +19,10 @@
         </form>
 
         <ul class="nav navbar-nav">
-            <li><a><aspan class="glyphicon glyphicon-shopping-cart" style="color:lightgrey"></aspan></a></li>
+            <li><a href="@Url.Action("Index", "Cart")"><aspan class="glyphicon glyphicon-shopping-cart" style="color:lightgrey"></aspan></a></li>
+
+            <li><a id="liLogin" style="color:lightgrey" asp-area="" asp-controller="MyOrders" asp-action="Index">My Orders</a></li>
+
             <li><a id="liLogin" style="color:lightgrey" asp-area="" asp-controller="Inventory" asp-action="Index">Inventory</a></li>
         </ul>
 
@@ -27,7 +30,7 @@
 </nav>
 
 <div class="container">
-    @RenderBody();
+    @RenderBody()
 </div>
 
 

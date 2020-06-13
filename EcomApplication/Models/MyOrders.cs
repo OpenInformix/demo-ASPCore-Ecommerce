@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace EcomApplication.Models
 {
-    public class Mobiles
+    public class MyOrders
     {
+        public int OrderID
+        {
+            get;
+            set;
+        }
+        public string PurchaseDate
+        {
+            get;
+            set;
+        }
         public int SLNo
         {
             get;
@@ -16,16 +25,6 @@ namespace EcomApplication.Models
         }
         [DisplayName("Mobile Name")]
         public string MobileName
-        {
-            get;
-            set;
-        }
-        public decimal Price
-        {
-            get;
-            set;
-        }
-        public int Quantity
         {
             get;
             set;
@@ -63,9 +62,21 @@ namespace EcomApplication.Models
             get;
             set;
         }
-
-        public IFormFile ImageFile { get; set; }
-
+        public decimal Price
+        {
+            get;
+            set;
+        }
+        public int Quantity
+        {
+            get;
+            set;
+        }
+        public decimal TotalAmount
+        {
+            get;
+            set;
+        }
         public string ErrorMessage { get; set; }
     }
 }

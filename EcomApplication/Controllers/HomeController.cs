@@ -47,14 +47,14 @@ namespace EcomApplication.Controllers
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Mobiles mob = new Mobiles();
-                mob.SLNo = Convert.ToInt32(dt.Rows[i]["slNo"]);
+                mob.SLNo = Convert.ToInt32(dt.Rows[i]["SLNo"]);
                 mob.MobileName = dt.Rows[i]["MobileName"].ToString();
                 mob.Price = Convert.ToDecimal(dt.Rows[i]["Price"]);
                 mob.Description = dt.Rows[i]["Description"].ToString();
                 mob.PicURL = dt.Rows[i]["PicURL"].ToString();
                 list.Add(mob);
             }
-                return View(list);
+            return View(list);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

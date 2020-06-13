@@ -1,0 +1,63 @@
+﻿@model IEnumerable<EcomApplication.Models.Cart>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_HomepageLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<div class="row">
+    <div class="col-md-10"> <h3>Cart Details</h3></div>
+    <div class="col-md-2" style="padding-top:15px">
+        <a class="btn btn-primary" href="@Url.Action("CreateOrder", "Cart")">Check Out</a>
+    </div>
+</div>
+
+<br>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Picture</th>
+        <th>Mobile Name</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>SimType</th>
+        <th>Features</th>
+        <th>Description</th>
+        <th>Price Per Unit</th>
+        <th>Selected Quantity</th>
+        <th>Total Amount</th>
+        <th></th>
+    </tr>
+
+    @foreach (var cartDetail in Model)
+    {
+        <tr>
+            <td> <img src="~/Images/@cartDetail.PicURL" style="overflow: hidden; position: relative; width:100px; height:100px;" /></td>
+            <td>@cartDetail.MobileName</td>
+            <td>@cartDetail.Model</td>
+            <td>@cartDetail.Color</td>
+            <td>@cartDetail.SimType</td>
+            <td>@cartDetail.Features</td>
+            <td>@cartDetail.Description</td>
+            <td>@cartDetail.Price</td>
+            <td>@cartDetail.Quantity</td>
+            <td>@cartDetail.TotalAmount</td>
+            <td>
+                <span>
+                    <a class="btn btn-default" href="@Url.Action("Edit", "Cart", new {@CartID=@cartDetail.CartID })">Edit</a>
+                    &nbsp; &nbsp;
+                    <a class="btn btn-default" href="@Url.Action("Delete", "Cart", new {@CartID=@cartDetail.CartID })">Delete</a>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>@cartDetail.ErrorMessage</td>
+        </tr>
+    }
+</table>
+

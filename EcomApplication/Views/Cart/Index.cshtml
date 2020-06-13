@@ -49,14 +49,13 @@
             <td>@cartDetail.TotalAmount</td>
             <td>
                 <span>
-                    <a class="btn btn-default" href="@Url.Action("Edit", "Cart", new {@CartID=@cartDetail.CartID })">Edit</a>
-                    &nbsp; &nbsp;
-                    <a class="btn btn-default" href="@Url.Action("Delete", "Cart", new {@CartID=@cartDetail.CartID })">Delete</a>
+                    <a class="btn btn-default" href="@Url.Action("Delete", "Cart", new {@CartID=@cartDetail.CartID })">
+                        <img src="~/Icons/delete.png" height="30" width="30" />
+                    </a>
                 </span>
             </td>
         </tr>
         <tr>
-            <td>@cartDetail.ErrorMessage</td>
         </tr>
     }
 </table>

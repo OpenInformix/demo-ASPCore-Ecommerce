@@ -34,7 +34,7 @@ namespace EcomApplication.Controllers
                 {
                     string createTable = "Create table Mobiles (SLNo serial PRIMARY KEY, MobileName nvarchar(100) NULL, Price decimal(18, 2)," +
                         " Quantity int NULL,  Description nvarchar(250) NULL, PicURL nvarchar(250) NULL," +
-                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL)";
+                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL, ImageFile Blob)";
                     IfxCommand cmd = new IfxCommand(createTable, Con);
                     cmd.ExecuteNonQuery();
                     IfxDataAdapter ifx = new IfxDataAdapter("SELECT * FROM Mobiles", Con);
@@ -59,20 +59,40 @@ namespace EcomApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Mobiles mobilesModel)
         {
-            // To create a Unique file name and URL everytime when User upload a new picture
+
+            // To create a Unique file name and URL everytime when User upload a new picture 
             string ImageFileName = Path.GetFileNameWithoutExtension(mobilesModel.ImageFile.FileName);
             string ImageFileExtension = Path.GetExtension(mobilesModel.ImageFile.FileName);
             string FinalImageName = ImageFileName + DateTime.Now.ToString("yymmssfff") + ImageFileExtension;
             mobilesModel.PicURL = FinalImageName;
             // To save that newly uploaded image to Disk location inside wwwroot/Images folder
             var uploads = Path.Combine(hostingEnvironment.WebRootPath, "Images");
-            var path = Path.Combine(uploads, FinalImageName);
-            mobilesModel.ImageFile.CopyTo(new FileStream(path, FileMode.Create));
+            var imagePath = Path.Combine(uploads, FinalImageName);
 
-            // To save the newly added Mobile and the Image disk path to Database table (Mobiles)
+            FileStream fileStream = new FileStream(imagePath, FileMode.Create);
+            mobilesModel.ImageFile.CopyTo(fileStream);
+            fileStream.Close();
+
+
+            //string fileByteArray = null;
+            //var fileBytes = 0;
+            /*
+            if (mobilesModel.ImageFile.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    //mobilesModel.ImageFile.CopyTo(ms);
+                    //var fileBytes = ms.ToArray();
+                    //fileByteArray = Convert.ToBase64String();
+                    // act on the Base64 data
+
+                    // To save the newly added Mobile and the Image disk imagePath to Database table (Mobiles)
+                    */
             using (IfxConnection Con = new IfxConnection(connString))
             {
                 Con.Open();
+
+                // Insert the form data into mobiles table but not the picture
                 string query = "INSERT INTO Mobiles (MobileName, Price, Quantity, Description, PicURL, Model, Features, Color, SimType) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 IfxCommand cmd = new IfxCommand(query, Con);
                 cmd.Parameters.Add("mobilename", IfxType.VarChar).Value = mobilesModel.MobileName;
@@ -84,12 +104,51 @@ namespace EcomApplication.Controllers
                 cmd.Parameters.Add("features", IfxType.VarChar).Value = mobilesModel.Features;
                 cmd.Parameters.Add("color", IfxType.VarChar).Value = mobilesModel.Color;
                 cmd.Parameters.Add("simtype", IfxType.VarChar).Value = mobilesModel.SimType;
-
                 cmd.ExecuteNonQuery();
-                Con.Close();
+                cmd.Dispose();
+
+                // Getting the latest inserted row's slno to insert the picture in the same row
+                string selQuery = "Select max(slno) from Mobiles";
+                IfxCommand selcmd = new IfxCommand(selQuery, Con);
+                int serialnumber = -1;
+                try
+                {
+                    IfxDataReader rows = selcmd.ExecuteReader();
+                    while (rows.Read())
+                    {
+                        serialnumber = Convert.ToInt32(rows[0]);
+                    }
+                    rows.Close();
+                    selcmd.Dispose();
+
+                    string updatePicQuery = "update mobiles set(imagefile) = (Filetoblob(" + "'" + imagePath + "'" + ", 'client', 'mobiles', 'imagefile')) where slno = ?";
+                    IfxCommand insertPiccmd = new IfxCommand(updatePicQuery, Con);
+                    insertPiccmd.Parameters.Add("slno", IfxType.Int).Value = serialnumber;
+                    insertPiccmd.ExecuteNonQuery();
+                    insertPiccmd.Dispose();
+
+                    // Delete the temprary created image file from Disk
+                    
+                    FileInfo file = new FileInfo(imagePath);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
+                    
+                }
+                catch (IfxException ex)
+                {
+                    
+                }
+                finally
+                {
+                   Con.Close();
+                }
             }
             return RedirectToAction("Index");
         }
+    
+           
 
         // GET: /Mobiles/Edit/5
         public ActionResult Edit(int SLNo)
@@ -136,8 +195,8 @@ namespace EcomApplication.Controllers
 
             // To save that newly uploaded image to Disk location inside wwwroot/Images folder
             var uploads = Path.Combine(hostingEnvironment.WebRootPath, "Images");
-            var path = Path.Combine(uploads, FinalImageName);
-            mobile.ImageFile.CopyTo(new FileStream(path, FileMode.Create));
+            var imagePath = Path.Combine(uploads, FinalImageName);
+            mobile.ImageFile.CopyTo(new FileStream(imagePath, FileMode.Create));
 
             using (IfxConnection Con = new IfxConnection(connString))
             {

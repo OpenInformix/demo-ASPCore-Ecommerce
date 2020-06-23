@@ -8,17 +8,23 @@ using Microsoft.Extensions.Logging;
 using EcomApplication.Models;
 using EcomDAL;
 using System.Data;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Informix.Net.Core;
 
 namespace EcomApplication.Controllers
 {
     public class HomeController : Controller
     {
+        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=Rinvoke1;";
+
+        private readonly IWebHostEnvironment hostingEnvironment;
         private readonly ILogger<HomeController> _logger;
         EcomDetailsDAL ecomDAL = new EcomDetailsDAL();
         DataTable dt;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IWebHostEnvironment environment, ILogger<HomeController> logger)
         {
+            hostingEnvironment = environment;
             _logger = logger;
         }
 
@@ -34,7 +40,7 @@ namespace EcomApplication.Controllers
             {
                 string createTable = "Create table Mobiles (SLNo serial PRIMARY KEY, MobileName nvarchar(100) NULL, Price decimal(18, 2)," +
                         " Quantity int NULL,  Description nvarchar(250) NULL, PicURL nvarchar(250) NULL," +
-                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL)";
+                        " Model nvarchar(50) NULL, Features nvarchar(200) NULL, Color nvarchar(20) NULL, SimType nvarchar(10) NULL, ImageFile Blob)";
                 Boolean status = ecomDAL.DDLOpperation(createTable);
                 if (status)
                 {
@@ -53,7 +59,27 @@ namespace EcomApplication.Controllers
                 mob.Description = dt.Rows[i]["Description"].ToString();
                 mob.PicURL = dt.Rows[i]["PicURL"].ToString();
                 list.Add(mob);
-            }
+                // Downloading the photo from databse and storing it on the disk
+                // To save that newly uploaded image to Disk location inside wwwroot/Images folder
+                var downloads = Path.Combine(hostingEnvironment.WebRootPath, "DownloadImages");
+                var imagePath = Path.Combine(downloads, mob.PicURL);
+
+                FileInfo file = new FileInfo(imagePath);
+                if (file.Exists)
+                {
+                    file.Delete();
+                }
+
+                using (IfxConnection Con = new IfxConnection(connString))
+                {
+                    Con.Open();
+                    string selectImage = "select LOTOFILE (imagefile, " + "'" + imagePath + "!'" + ", 'client') from mobiles where slno = ?";
+                    IfxCommand selectImagecmd = new IfxCommand(selectImage, Con);
+                    selectImagecmd.Parameters.Add("slno", IfxType.Serial).Value = mob.SLNo;
+                    selectImagecmd.ExecuteScalar();
+                    Con.Close();
+                }
+            }   
             return View(list);
         }
 

@@ -20,6 +20,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\DownloadImages\" />
+  </ItemGroup>
+
 
 
 </Project>

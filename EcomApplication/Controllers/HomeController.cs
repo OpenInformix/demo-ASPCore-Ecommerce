@@ -11,12 +11,13 @@ using System.Data;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Informix.Net.Core;
+using System.Configuration;
 
 namespace EcomApplication.Controllers
 {
     public class HomeController : Controller
     {
-        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=Rinvoke1;";
+        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=****;";
 
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly ILogger<HomeController> _logger;

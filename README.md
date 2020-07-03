@@ -33,9 +33,9 @@ ECommerce web application in ASP .Net Core (MVC) without EF core.
 
 **Mobile Shop**-> Allows online shopping customers to accumulate a list of items for purchase, once user will click on the item it will redirect the user to **Product Specification** page with all the mobile details, from where user can select the quantity and place the items in the Shopping Cart or Add to Cart and Continue Shooping will redirect the user to the shopping page.
 
-**Shopping Cart**-> Displays the list of all product details from the database with the total amount according to the quantity selected. Upon checkout,it typically calculates a total amount of each product for the order, and redirect the user to the payment page. User can also delete the particular product from Cart.
+**Shopping Cart**-> Displays the list of all product details from the database with the total amount according to the quantity selected. Upon checkout,it typically calculates a total amount of each product for the order, and redirect the user to the **Payment** page. User can also delete the particular product from Cart.
 
-**Payment**-> Displays the Total Amount to be paid for the order and user can enter the credit/debit card details and Make Payment. After making Payment user will be redirected to the MyOrders Page with the Order summary and order number.
+**Payment**-> Displays the Total Amount to be paid for the order and user can enter the credit/debit card details and Make Payment. After making Payment user will be redirected to the **MyOrders** Page with the Order summary and order number.
 
 **My Orders**-> Displays the summary of all placed orders with Order Number and Total amount.
 

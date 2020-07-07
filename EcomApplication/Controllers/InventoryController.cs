@@ -13,7 +13,8 @@ namespace EcomApplication.Controllers
 {
     public class InventoryController : Controller
     {
-        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=****;";
+        string connString = Config.ConnStr;
+
         private readonly IWebHostEnvironment hostingEnvironment;
         public InventoryController(IWebHostEnvironment environment)
         {

@@ -13,7 +13,7 @@ ECommerce web application in ASP .Net Core (MVC) without EF core.
 * Git clone this project to a location in your disk.
 * Open the solution file EcomApplication.sln using the Visual Studio 2019.
 * Restore the NuGet packages by rebuilding the solution.
-* Change the connection string in all the Controller.cs file.
+* Change the connection string Config.cs file.
 * Run the project(it will open a web browser with application running on it).
 
 ## Agenda

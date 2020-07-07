@@ -11,7 +11,7 @@ namespace EcomApplication.Controllers
 {
     public class MyOrdersController : Controller
     {
-        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=****";
+        string connString = Config.ConnStr;
         public IActionResult Index()
         {
             DataTable table = new DataTable();

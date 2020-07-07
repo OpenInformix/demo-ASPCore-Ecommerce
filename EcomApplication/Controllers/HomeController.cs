@@ -17,7 +17,7 @@ namespace EcomApplication.Controllers
 {
     public class HomeController : Controller
     {
-        string connString = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=****;";
+        string connString = Config.ConnStr;
 
         private readonly IWebHostEnvironment hostingEnvironment;
         private readonly ILogger<HomeController> _logger;

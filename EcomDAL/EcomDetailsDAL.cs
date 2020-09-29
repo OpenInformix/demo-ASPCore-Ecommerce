@@ -5,14 +5,13 @@ using Informix.Net.Core;
 
 namespace EcomDAL
 {
-    public class EcomDetailsDAL
+    public class EcomDetailsDAL 
     {
         IfxCommand cmd;
         IfxDataAdapter da;
-        DataSet ds;
         public static IfxConnection connect()
         {
-            string connection = "DataBase=webapp;Server=ol_informix1410_9;User ID = informix; Password=Rinvoke1;";
+            string connection = Config.connStr;
             //string connection = ConfigurationManager.ConnectionStrings["Connect"].ConnectionString;
             IfxConnection con = new IfxConnection(connection);
             if (con.State == ConnectionState.Open)

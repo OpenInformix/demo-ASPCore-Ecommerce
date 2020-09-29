@@ -8,6 +8,7 @@ using System.Data;
 using EcomApplication.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using EcomDAL;
 
 namespace EcomApplication.Controllers
 {

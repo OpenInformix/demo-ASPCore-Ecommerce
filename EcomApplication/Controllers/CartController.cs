@@ -9,6 +9,7 @@ using Informix.Net.Core;
 using EcomApplication.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using EcomDAL;
 
 namespace EcomApplication.Controllers
 {

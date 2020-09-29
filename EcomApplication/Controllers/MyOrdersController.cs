@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Informix.Net.Core;
 using EcomApplication.Models;
 using System.Data;
+using EcomDAL;
 
 namespace EcomApplication.Controllers
 {
